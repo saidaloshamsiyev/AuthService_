@@ -1,0 +1,40 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: AUTH-SERVICE
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/metube
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:1234}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://${EUREKA_HOST:localhost}:8761/eureka/}
+  instance:
+    preferIpAddress: true
+
+
+
+
+jwt:
+  secret: qwefklsdfj3roif134adsj14fdslkjf1234fiodwq
+  accessTokenExpiration: 3600000
+  refreshTokenExpiration: 86400000
+
+
+springdoc:
+  swagger-ui:
+    config-url: /api/auth/v3/api-docs/swagger-config
+    url: /api/auth/swagger-ui
+    path: /api/auth/swagger-ui

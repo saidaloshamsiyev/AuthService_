@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: metube
+    volumes:
+      - ./db-data:/var/lib/postgres/data
+
+  auth-service:
+    build: ./
+    ports:
+      - "8084:8084"
+
+
+
+
+
