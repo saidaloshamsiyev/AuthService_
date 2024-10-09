@@ -2,15 +2,14 @@ package org.example.authservice.controller;
 
 import lombok.RequiredArgsConstructor;
 
-import org.example.authservice.domain.request.LoginDTO;
+import metube.com.dto.request.LoginDTO;
+import metube.com.dto.response.UserResponse;
 import org.example.authservice.domain.request.UserRequest;
 import org.example.authservice.domain.response.JwtResponse;
-import org.example.authservice.domain.response.UserResponse;
 import org.example.authservice.service.service.user.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -28,5 +27,11 @@ public class AuthController {
     @PostMapping("/login")
     public JwtResponse login(@RequestBody LoginDTO loginDTO) {
         return userService.login(loginDTO);
+    }
+
+
+    @GetMapping("/{id}")
+    public UserResponse getUser(@PathVariable UUID id) {
+        return userService.findById(id);
     }
 }
