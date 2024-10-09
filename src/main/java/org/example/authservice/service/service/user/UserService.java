@@ -2,10 +2,10 @@ package org.example.authservice.service.service.user;
 
 
 
-import org.example.authservice.domain.request.LoginDTO;
+import metube.com.dto.request.LoginDTO;
+import metube.com.dto.response.UserResponse;
 import org.example.authservice.domain.request.UserRequest;
 import org.example.authservice.domain.response.JwtResponse;
-import org.example.authservice.domain.response.UserResponse;
 
 
 import java.util.List;

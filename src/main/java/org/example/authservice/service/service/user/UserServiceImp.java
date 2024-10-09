@@ -2,7 +2,10 @@ package org.example.authservice.service.service.user;
 
 import lombok.RequiredArgsConstructor;
 
+import metube.com.dto.request.LoginDTO;
+import metube.com.dto.response.UserResponse;
 import org.example.authservice.domain.entity.UserEntity;
+
 import org.example.authservice.exception.BaseException;
 import org.example.authservice.repository.UserRepository;
 import org.example.authservice.service.JwtService;
@@ -12,10 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
-import org.example.authservice.domain.request.LoginDTO;
 import org.example.authservice.domain.request.UserRequest;
 import org.example.authservice.domain.response.JwtResponse;
-import org.example.authservice.domain.response.UserResponse;
 
 @Service
 @RequiredArgsConstructor
