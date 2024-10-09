@@ -14,9 +14,10 @@ import java.util.UUID;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     Optional<UserEntity> findByUsername(String username);
-
+/*
     @Query("select new org.example.authservice.domain.response.UserResponse(u.username,u.email)" +
-            "from users u")
+            "from users u")*/
+    @Query("select u from users u")
     List<UserResponse> getAllUsers();
 
 }
