@@ -1,8 +1,8 @@
 package org.example.authservice.repository;
 
 
+import metube.com.dto.response.UserResponse;
 import org.example.authservice.domain.entity.UserEntity;
-import org.example.authservice.domain.response.UserResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
