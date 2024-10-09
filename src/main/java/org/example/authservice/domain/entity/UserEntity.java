@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -24,7 +25,6 @@ public class UserEntity extends BaseEntity implements UserDetails {
     private String password;
     private String email;
     private String picturePath;
-    private UUID videoId;
     private UUID subscriptionId;
     @Enumerated(EnumType.STRING)
     private UserRole role;
@@ -34,3 +34,4 @@ public class UserEntity extends BaseEntity implements UserDetails {
         return List.of(new SimpleGrantedAuthority("ROLE_"+role.name()));
     }
 }
+

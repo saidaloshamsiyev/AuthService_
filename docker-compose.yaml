@@ -6,7 +6,7 @@ services:
 
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1234
+      POSTGRES_PASSWORD: 12345
       POSTGRES_DB: metube
     volumes:
       - ./db-data:/var/lib/postgres/data
