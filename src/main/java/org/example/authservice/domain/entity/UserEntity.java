@@ -20,7 +20,4 @@ public class UserEntity extends BaseEntity {
     private String picturePath;
     private UUID videoId;
     private UUID subscriptionId;
-
-
-
 }
