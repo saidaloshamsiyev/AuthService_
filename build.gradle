@@ -25,8 +25,8 @@ repositories {
     maven {
         url = uri("https://maven.pkg.github.com/saidaloshamsiyev/metube_library")
         credentials {
-            username = project.findProperty("USERNAME_GITHUB") ?: System.getenv("USERNAME_GITHUB")
-            password = project.findProperty("USERNAME_PASSWORD") ?: System.getenv("USERNAME_PASSWORD")
+            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+            password = project.findProperty("gpr.token") ?: System.getenv("TOKEN")
         }
     }
 }
