@@ -5,9 +5,9 @@ spring:
   application:
       name: AUTH-SERVICE
   datasource:
-    url: jdbc:postgresql://${DB_HOST:database-1.cp2icoyuwaja.eu-north-1.rds.amazonaws.com}:5432/metube
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:b30pdp1234}
+    url: jdbc:postgresql://db-postgresql-fra1-87165-do-user-18016718-0.d.db.ondigitalocean.com:25060/defaultdb
+    username: doadmin
+    password: AVNS_32YM4eyu8TB3pZJbqgJ
   jpa:
     hibernate:
       ddl-auto: update

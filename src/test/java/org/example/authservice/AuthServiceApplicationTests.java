@@ -1,4 +1,3 @@
-/*
 package org.example.authservice;
 
 import org.junit.jupiter.api.Test;
@@ -12,4 +11,4 @@ class AuthServiceApplicationTests {
     }
 
 }
-*/
+
