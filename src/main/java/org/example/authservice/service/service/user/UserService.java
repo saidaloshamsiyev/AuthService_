@@ -1,7 +1,5 @@
 package org.example.authservice.service.service.user;
 
-
-
 import metube.com.dto.request.LoginDTO;
 import metube.com.dto.response.UserResponse;
 import org.example.authservice.domain.request.UserRequest;
@@ -16,7 +14,7 @@ public interface UserService {
     UserResponse updateUser(UUID id, UserRequest userRequest);
     void deleteUser(UUID id);
     UserResponse findById(UUID id);
-    List<UserResponse>getAllUsers();
+//    List<UserResponse>getAllUsers();
     JwtResponse login(LoginDTO loginDTO);
 
 }

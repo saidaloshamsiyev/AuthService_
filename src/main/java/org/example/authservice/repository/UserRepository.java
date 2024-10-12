@@ -15,8 +15,7 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     Optional<UserEntity> findByUsername(String username);
 
-    @Query("select new org.example.authservice.domain.response.UserResponse(u.username,u.email)" +
-            "from users u")
-    List<UserResponse> getAllUsers();
-
+//    @Query("select new org.example.authservice.domain.response.UserResponse(u.username,u.email)" +
+//            "from users u")
+//    List<UserResponse> getAllUsers();
 }
