@@ -35,4 +35,5 @@ public class AuthController {
     public UserResponse getUser(@PathVariable UUID id) {
         return userService.findById(id);
     }
+
 }
