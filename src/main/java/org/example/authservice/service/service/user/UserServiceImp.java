@@ -80,10 +80,10 @@ public class UserServiceImp implements UserService {
                 .build();
     }
 
-//    @Override
-//    public List<UserResponse> getAllUsers() {
-//        return userRepository.getAllUsers();
-//    }
+    @Override
+    public List<UserResponse> getAllUsers() {
+        return userRepository.getAllUsers();
+    }
 
     @Override
     public JwtResponse login(LoginDTO loginDTO) {
