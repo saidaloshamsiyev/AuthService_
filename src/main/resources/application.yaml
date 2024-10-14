@@ -7,7 +7,7 @@ spring:
   datasource:
     url: jdbc:postgresql://${DB_HOST:localhost}:5432/metube
     username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:1234}
+    password: ${DB_PASSWORD:8463}
   jpa:
     hibernate:
       ddl-auto: update
@@ -32,8 +32,11 @@ jwt:
   accessTokenExpiration: 3600000
   refreshTokenExpiration: 86400000
 
+
+
 springdoc:
   swagger-ui:
     config-url: /api/auth/v3/api-docs/swagger-config
     url: /api/auth/swagger-ui
     path: /api/auth/swagger-ui
+
