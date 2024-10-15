@@ -34,9 +34,5 @@ jwt:
 
 
 
-springdoc:
-  swagger-ui:
-    config-url: /api/auth/v3/api-docs/swagger-config
-    url: /api/auth/swagger-ui
-    path: /api/auth/swagger-ui
+
 
