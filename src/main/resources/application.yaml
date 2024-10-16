@@ -7,7 +7,7 @@ spring:
   datasource:
     url: jdbc:postgresql://${DB_HOST:localhost}:5432/metube
     username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:8463}
+    password: ${DB_PASSWORD:1234}
   jpa:
     hibernate:
       ddl-auto: update
@@ -23,7 +23,6 @@ eureka:
       defaultZone: ${EUREKA_URI:http://${EUREKA_HOST:localhost}:8761/eureka/}
   instance:
     preferIpAddress: true
-
 
 
 
