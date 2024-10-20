@@ -16,13 +16,10 @@ public class CustomFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String username = request.getHeader("X-Username");
-
         if (Objects.isNull(username)) {
             filterChain.doFilter(request, response);
             return;
         }
-
-
         UsernamePasswordAuthenticationToken auth =
                 new UsernamePasswordAuthenticationToken
                         (username, null, null);
@@ -31,3 +28,4 @@ public class CustomFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 }
+
