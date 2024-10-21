@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalException {
-/*hello*/
+
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<String> handleBaseException(BaseException e) {
         return ResponseEntity.status(400).body(e.getMessage());
