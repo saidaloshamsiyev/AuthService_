@@ -29,6 +29,10 @@ public class UserServiceImp implements UserService {
 
     @Override
     public UserResponse saveUser(UserRequest userRequest) {
+        if (userRepository.findByUsername(userRequest.getUsername()).isPresent()) {
+            throw new BaseException("Username already exists");
+        }
+
         UserEntity userEntity = UserEntity.builder()
                 .username(userRequest.getUsername())
                 .password(passwordEncoder.encode(userRequest.getPassword()))

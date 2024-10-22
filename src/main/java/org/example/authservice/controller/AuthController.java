@@ -30,7 +30,6 @@ public class AuthController {
         return userService.login(loginDTO);
     }
 
-
     @GetMapping("/{id}")
     public UserResponse getUser(@PathVariable UUID id) {
         return userService.findById(id);

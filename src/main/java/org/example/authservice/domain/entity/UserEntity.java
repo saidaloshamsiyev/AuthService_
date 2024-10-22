@@ -1,6 +1,7 @@
 package org.example.authservice.domain.entity;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 import lombok.*;
@@ -14,6 +15,7 @@ import java.util.UUID;
 @Entity(name = "users")
 @Builder
 public class UserEntity extends BaseEntity {
+    @Column(unique = true, nullable = false)
     private String username;
     private String password;
     private String email;

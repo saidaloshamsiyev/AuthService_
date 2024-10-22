@@ -1,5 +1,6 @@
 package org.example.authservice.service;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.example.authservice.domain.entity.UserEntity;
@@ -37,5 +38,7 @@ public class JwtService {
                 .expiration(new Date(System.currentTimeMillis() + refreshTokenExpiration))
                 .compact();
     }
+
+
 
 }
