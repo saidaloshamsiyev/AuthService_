@@ -1,7 +1,6 @@
 server:
   port: 8084
 
-
 spring:
   application:
     name: AUTH-SERVICE
@@ -18,6 +17,19 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
+    consumer:
+      group-id: auth-service
+      auto-offset-reset: earliest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+
+
 eureka:
   client:
     service-url:
@@ -31,11 +43,7 @@ springdoc:
   api-docs:
     path: /api/auth/v3/api-docs
 
-
 jwt:
   secret: qwefklsdfj3roif134adsj14fdslkjf1234fiodwq
   accessTokenExpiration: 3600000
   refreshTokenExpiration: 86400000
-
-
-
