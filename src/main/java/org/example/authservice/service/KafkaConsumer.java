@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class KafkaConsumer {
 
-    @KafkaListener(topics = "auth")
+    @KafkaListener(topics = "auth", groupId = "auth-service")
     public void consume(UserNotificationRequest message) {
         log.info("Received user notification: {}", message);
     }
 }
+

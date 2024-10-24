@@ -5,7 +5,7 @@ spring:
   application:
     name: AUTH-SERVICE
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:5432/metube
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/metube_local
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:1234}
   jpa:
@@ -20,14 +20,12 @@ spring:
 
 
   kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:broker:29092}
     consumer:
       group-id: auth-service
       auto-offset-reset: earliest
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 
 
 eureka:
@@ -42,6 +40,7 @@ springdoc:
     path: /api/auth/swagger-ui
   api-docs:
     path: /api/auth/v3/api-docs
+
 
 jwt:
   secret: qwefklsdfj3roif134adsj14fdslkjf1234fiodwq
