@@ -20,7 +20,7 @@ public class KafkaConfig {
         public ConsumerFactory<String, Object> consumerFactory() {
             Map<String,Object> props = new HashMap<>();
             props.put(ConsumerConfig.GROUP_ID_CONFIG, "auth-service");
-            props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "159.65.119.240:29092");
+            props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "159.65.119.240:9092");
             props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
             props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ChannelNotificationRequestDeserializer.class);
             props.put(ErrorHandlingDeserializer.VALIDATOR_CLASS,ErrorHandlingDeserializer.class);
