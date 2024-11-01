@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+@CrossOrigin(origins = {"http://localhost:3001", "http://159.65.119.240:8080"})
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
