@@ -9,9 +9,9 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**") // Barcha so'rovlar uchun
+        registry.addMapping("/api/**") // Barcha so'rovlar uchun
                 .allowedOrigins("http://localhost:3001","ttp://localhost:3000") // Faqat localhost:3001 manzilidan kelgan so'rovlar
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Qabul qilinadigan HTTP usullari
+                .allowedMethods("GET", "POST", "PUT", "DELETE") // Qabul qilinadigan HTTP usullari
                 .allowedHeaders("*"); // Qabul qilinadigan sarlavhalar
     }
 }
