@@ -54,6 +54,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
+
                                 .requestMatchers(WHITE_LIST).permitAll()
                                 .anyRequest().authenticated()
                 )
