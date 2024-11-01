@@ -64,7 +64,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOriginPatterns(List.of("http://localhost:3000", "https://159.65.119.240","http://localhost:3001")); // AWS domainini qo'shing
+        corsConfiguration.setAllowedOriginPatterns(List.of("http://localhost:3000", "https://159.65.119.240:8080","http://localhost:3001")); // AWS domainini qo'shing
         corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));  // Ruxsat etilgan metodlar
         corsConfiguration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept"));  // Ruxsat etilgan sarlavhalar
         corsConfiguration.setExposedHeaders(List.of("Authorization"));  // Javob sarlavhalarini expose qilish
