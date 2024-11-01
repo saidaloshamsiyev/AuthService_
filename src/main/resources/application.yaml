@@ -1,13 +1,11 @@
 server:
   port: 8084
 
-
-
 spring:
   application:
     name: AUTH-SERVICE
   datasource:
-    url: jdbc:postgresql://${DB_HOST:159.65.119.240}:5432/metube
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/metube
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:8463}
   jpa:
