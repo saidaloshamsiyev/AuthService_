@@ -14,7 +14,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
-import java.util.List;
+
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
