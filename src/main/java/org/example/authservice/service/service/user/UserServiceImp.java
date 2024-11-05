@@ -54,7 +54,6 @@ public class UserServiceImp implements UserService {
     @Override
     public UserResponse updateUser(UUID id, UserRequest userRequest) {
         UserEntity userEntity = userRepository.findById(id).orElseThrow(() -> new BaseException("User not found"));
-
         userEntity.setUsername(userRequest.getUsername());
         userEntity.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         userEntity.setEmail(userRequest.getEmail());
@@ -65,8 +64,6 @@ public class UserServiceImp implements UserService {
                 .username(userEntity.getUsername())
                 .email(userEntity.getEmail())
                 .build();
-
-
     }
 
     @Override
