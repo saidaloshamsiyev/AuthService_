@@ -22,13 +22,7 @@ configurations {
 
 repositories {
     mavenCentral()
-    maven {
-        url = uri("https://maven.pkg.github.com/saidaloshamsiyev/metube_library")
-        credentials {
-            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-            password = project.findProperty("gpr.token") ?: System.getenv("TOKEN")
-        }
-    }
+
 }
 
 ext {
@@ -42,7 +36,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
-    implementation 'metube.com:metube_library:1.0.14'
+//    implementation 'metube.com:metube_library:1.0.14'
 
     implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
     implementation 'io.jsonwebtoken:jjwt-impl:0.12.6'
