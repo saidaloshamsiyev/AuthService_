@@ -16,6 +16,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -79,21 +80,30 @@ public class SecurityConfig {
                 .build();
     }
 
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOriginPatterns(List.of(
-                "http://localhost:3000",
-                "http://159.65.119.240:8080",
-                "http://localhost:3001"
-        ));
-        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        corsConfiguration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept"));
-        corsConfiguration.setExposedHeaders(List.of("Authorization"));
-        corsConfiguration.setAllowCredentials(true);
+        CorsConfiguration configuration = new CorsConfiguration();
 
+        // Allow credentials (cookies, authentication)
+        configuration.setAllowCredentials(true);
+
+        // Specify allowed origins. You can set specific origins or allow all (not recommended in production)
+        configuration.setAllowedOriginPatterns(List.of("*"));
+
+        // Allow all headers
+        configuration.setAllowedHeaders(List.of("*"));
+
+        // Allow HTTP methods
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+
+        // Allow specific headers like Authorization
+        configuration.setExposedHeaders(List.of("Authorization"));
+
+        // Apply to all paths
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfiguration);
+        source.registerCorsConfiguration("/**", configuration);
+
         return source;
     }
 
