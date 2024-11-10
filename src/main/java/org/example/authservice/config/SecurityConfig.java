@@ -17,6 +17,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -37,39 +38,10 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-//    sda
-  /*  @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authorizeRequests ->
-                        authorizeRequests
-                                .requestMatchers(WHITE_LIST).permitAll()
-                                .anyRequest().authenticated()
-                )
-                .addFilterBefore(new CustomFilter(),
-                        UsernamePasswordAuthenticationFilter.class)
-                .build();
-    }*/
-
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        return http
-//                .csrf(AbstractHttpConfigurer::disable)
-////                .cors(AbstractHttpConfigurer::disable)
-//                .authorizeHttpRequests(authorizeRequests ->
-//                        authorizeRequests
-//                                .requestMatchers(WHITE_LIST).permitAll()
-//                                .anyRequest().authenticated()
-//                )
-//                .addFilterBefore(new CustomFilter(), UsernamePasswordAuthenticationFilter.class)
-//                .build();
-//    }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-//                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // CORS ni yoqing
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
@@ -80,35 +52,17 @@ public class SecurityConfig {
                 .build();
     }
 
-
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//
-//        // Allow credentials (cookies, authentication)
-//        configuration.setAllowCredentials(true);
-//
-//        // Specify allowed origins. You can set specific origins or allow all (not recommended in production)
-//        configuration.setAllowedOriginPatterns(List.of("*"));
-//
-//        // Allow all headers
-//        configuration.setAllowedHeaders(List.of("*"));
-//
-//        // Allow HTTP methods
-//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-//
-//        // Allow specific headers like Authorization
-//        configuration.setExposedHeaders(List.of("Authorization"));
-//
-//
-//        configuration.setAllowedOriginPatterns(List.of("http://64.226.102.195:8080"));
-//
-//        // Apply to all paths
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//
-//        return source;
-//    }
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Collections.singletonList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token", "token"));
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
 
 }

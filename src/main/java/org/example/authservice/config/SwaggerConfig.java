@@ -16,9 +16,9 @@ public class SwaggerConfig {
         return new OpenAPI()
 
                 .info(new Info()
-                        .title("Channel Service API")
+                        .title("AUTH-SERVICE Service API")
                         .version("1.0")
-                        .description("API for managing channels"))
+                        .description("API for managing auth"))
                 .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
                 .components(new Components()
                         .addSecuritySchemes(securitySchemeName,
