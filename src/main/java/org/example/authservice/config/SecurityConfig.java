@@ -100,14 +100,15 @@ public class SecurityConfig {
         // Allow specific headers like Authorization
         configuration.setExposedHeaders(List.of("Authorization"));
 
+
+        configuration.setAllowedOriginPatterns(List.of("http://64.226.102.195:8080"));
+
         // Apply to all paths
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
 
         return source;
     }
-
-
 
 
 }
