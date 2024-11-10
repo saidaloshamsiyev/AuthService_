@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -41,7 +42,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))  // CORS ni yoqing
+                .cors(AbstractHttpConfigurer::disable)
+//                .cors(cors -> cors.configurationSource(corsConfigurationSource()))  // CORS ni yoqing
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
@@ -54,16 +56,17 @@ public class SecurityConfig {
 
 
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Collections.singletonList("*"));  // Swagger UI va boshqa ilovalarga ruxsat
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token", "token"));
-        configuration.setAllowCredentials(true);  // Cookies va credentialslarni qo'llash
+    public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);  // Barcha endpointlarga CORS ruxsati
-        return source;
+        CorsConfiguration config = new CorsConfiguration();
+
+        config.addAllowedOrigin("*"); // All origins are allowed
+        config.addAllowedHeader("*"); // All headers are allowed
+        config.addAllowedMethod("*"); // All HTTP methods are allowed
+
+        source.registerCorsConfiguration("/**", config); // Apply CORS configuration to all paths
+        return new CorsFilter(source);
     }
-
-
 }
+
+

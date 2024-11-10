@@ -27,12 +27,12 @@ eureka:
   instance:
     preferIpAddress: true
 
-springdoc:
-  swagger-ui:
-    path: /api/auth/swagger-ui
-  api-docs:
-    path: /api/auth/v3/api-docs
-
+#springdoc:
+#  swagger-ui:
+#    path: /api/auth/swagger-ui
+#  api-docs:
+#    path: /api/auth/v3/api-docs
+#
 
 
 jwt:
