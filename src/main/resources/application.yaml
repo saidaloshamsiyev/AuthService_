@@ -5,7 +5,7 @@ spring:
   application:
     name: AUTH-SERVICE
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:5432/metube
+    url: jdbc:postgresql://${DB_HOST:64.226.102.195}:5432/metube
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:8463}
   jpa:

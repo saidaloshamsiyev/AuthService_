@@ -69,7 +69,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+//                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
@@ -81,34 +81,34 @@ public class SecurityConfig {
     }
 
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-
-        // Allow credentials (cookies, authentication)
-        configuration.setAllowCredentials(true);
-
-        // Specify allowed origins. You can set specific origins or allow all (not recommended in production)
-        configuration.setAllowedOriginPatterns(List.of("*"));
-
-        // Allow all headers
-        configuration.setAllowedHeaders(List.of("*"));
-
-        // Allow HTTP methods
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-
-        // Allow specific headers like Authorization
-        configuration.setExposedHeaders(List.of("Authorization"));
-
-
-        configuration.setAllowedOriginPatterns(List.of("http://64.226.102.195:8080"));
-
-        // Apply to all paths
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-
-        return source;
-    }
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration configuration = new CorsConfiguration();
+//
+//        // Allow credentials (cookies, authentication)
+//        configuration.setAllowCredentials(true);
+//
+//        // Specify allowed origins. You can set specific origins or allow all (not recommended in production)
+//        configuration.setAllowedOriginPatterns(List.of("*"));
+//
+//        // Allow all headers
+//        configuration.setAllowedHeaders(List.of("*"));
+//
+//        // Allow HTTP methods
+//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+//
+//        // Allow specific headers like Authorization
+//        configuration.setExposedHeaders(List.of("Authorization"));
+//
+//
+//        configuration.setAllowedOriginPatterns(List.of("http://64.226.102.195:8080"));
+//
+//        // Apply to all paths
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//
+//        return source;
+//    }
 
 
 }
