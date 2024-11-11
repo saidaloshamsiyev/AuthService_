@@ -17,7 +17,6 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 
-
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
@@ -53,7 +52,8 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOriginPattern("*"); // Barcha domenlarga ruxsat berish (yaxshiroq xavfsizlik uchun allowedOriginPattern ishlatish)
+        config.addAllowedOriginPattern("*"); // Barcha domenlarga ruxsat berish uchun allowedOriginPattern ishlatish
+        config.setAllowCredentials(true); // allowCredentials true bo'lsa, allowedOriginPattern ishlatilishi kerak
         config.addAllowedHeader("*"); // Barcha headerlarga ruxsat berish
         config.addAllowedMethod("*"); // Barcha HTTP metodlarga ruxsat berish
 
@@ -61,6 +61,7 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", config); // CORS sozlamalarni barcha yo'llarga qo'llash
         return source;
     }
+
 }
 
 
