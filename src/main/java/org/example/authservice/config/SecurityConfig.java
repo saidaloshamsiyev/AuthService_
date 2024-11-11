@@ -15,11 +15,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 
 @EnableWebSecurity
@@ -42,7 +38,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-//                .cors(cors -> cors.configurationSource(corsConfigurationSource()))  // CORS ni yoqing
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))  // CORS ni yoqing
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
@@ -55,16 +51,15 @@ public class SecurityConfig {
 
 
     @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedOriginPattern("*"); // Barcha domenlarga ruxsat berish (yaxshiroq xavfsizlik uchun allowedOriginPattern ishlatish)
+        config.addAllowedHeader("*"); // Barcha headerlarga ruxsat berish
+        config.addAllowedMethod("*"); // Barcha HTTP metodlarga ruxsat berish
 
-        config.addAllowedOrigin("*"); // All origins are allowed
-        config.addAllowedHeader("*"); // All headers are allowed
-        config.addAllowedMethod("*"); // All HTTP methods are allowed
-
-        source.registerCorsConfiguration("/**", config); // Apply CORS configuration to all paths
-        return new CorsFilter(source);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config); // CORS sozlamalarni barcha yo'llarga qo'llash
+        return source;
     }
 }
 
