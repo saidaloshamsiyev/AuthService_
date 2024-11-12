@@ -22,7 +22,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfig {
 
     private final String[] WHITE_LIST = {"/api/auth/login",
-            "/api/auth/register",
+            "/api/auth/register","api/auth/verifyEmail",
             "/api/auth/swagger-ui/**",
             "/api/auth/v3/api-docs/**",
             "/v3/api-docs/**",
