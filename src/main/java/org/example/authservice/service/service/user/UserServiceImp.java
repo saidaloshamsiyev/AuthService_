@@ -130,6 +130,7 @@ public class UserServiceImp implements UserService {
 
     public JwtResponse forEmail(String email) {
         UserEntity userEntity = userRepository.findByEmail(email).orElseThrow(() -> new BaseException("email not found"));
+        userEntity.setIsActive(true);
         return new JwtResponse(jwtService.generateAccessToken(userEntity),
                 jwtService.generateRefreshToken(userEntity));
     }
