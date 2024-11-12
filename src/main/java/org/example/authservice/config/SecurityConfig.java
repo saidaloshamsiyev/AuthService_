@@ -28,7 +28,8 @@ public class SecurityConfig {
             "/v3/api-docs/**",
             "/swagger-ui/**",
             "/swagger-ui.html",
-            "http://64.226.102.195:8080/api/auth/swagger-ui/index.html#/"};
+//            "http://64.226.102.195:8080/api/auth/swagger-ui/index.html#/"};
+            "http://192.168.112.6:8084/api/auth/login"};
 
     @Bean
     public PasswordEncoder passwordEncoder() {
