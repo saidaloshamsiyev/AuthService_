@@ -22,4 +22,6 @@ public class UserEntity extends BaseEntity {
     private String picturePath;
     private UUID videoId;
     private UUID subscriptionId;
+    private String gmailCode;
+    private Boolean isActive;
 }

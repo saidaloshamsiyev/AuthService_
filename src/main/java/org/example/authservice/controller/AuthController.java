@@ -21,7 +21,7 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public UserResponse register(@RequestBody UserRequest userRequest) {
+    public String register(@RequestBody UserRequest userRequest) {
         return userService.saveUser(userRequest);
     }
 
@@ -43,4 +43,9 @@ public class AuthController {
         return userService.updateUser(id, userRequest);
     }
 
+
+    @GetMapping("/verifyEmail")
+    public String verfyEmail(@RequestParam String username, @RequestParam String code) {
+      return userService.verifyEmail(username, code);
+    }
 }

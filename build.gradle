@@ -43,6 +43,8 @@ dependencies {
     implementation 'io.jsonwebtoken:jjwt-jackson:0.12.6'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
+    implementation 'com.sun.mail:javax.mail:1.6.2'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     testImplementation 'org.springframework.security:spring-security-test'

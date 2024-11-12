@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import org.example.authservice.domain.request.UserRequest;
@@ -26,9 +27,18 @@ public class UserServiceImp implements UserService {
     private final UserRepository userRepository;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
+    private final VerificationService verificationService;
 
     @Override
-    public UserResponse saveUser(UserRequest userRequest) {
+    public String saveUser(UserRequest userRequest) {
+        if (!userRequest.getEmail().endsWith("@gmail.com")) {
+            throw new BaseException("Email must be a Gmail address");
+        }
+
+        String code = generateCode();
+
+        verificationService.sendVerificationCode(userRequest.getEmail(), code);
+
         if (userRepository.findByUsername(userRequest.getUsername()).isPresent()) {
             throw new BaseException("Username already exists");
         }
@@ -38,17 +48,14 @@ public class UserServiceImp implements UserService {
                 .password(passwordEncoder.encode(userRequest.getPassword()))
                 .email(userRequest.getEmail())
                 .picturePath(userRequest.getPicturePath())
+                .gmailCode(code)
+                .isActive(false)
                 .build();
 
         userRepository.save(userEntity);
 
 
-        return UserResponse.builder()
-                .username(userEntity.getUsername())
-                .email(userEntity.getEmail())
-                .build();
-
-
+        return "Verification Code Send your Email";
     }
 
     @Override
@@ -89,6 +96,11 @@ public class UserServiceImp implements UserService {
     @Override
     public JwtResponse login(LoginDTO loginDTO) {
         UserEntity userEntity = userRepository.findByUsername(loginDTO.getUsername()).orElseThrow(() -> new BaseException("user not found"));
+
+        if(userEntity.getIsActive().equals(false)){
+            throw new BaseException("User is not active");
+        }
+
         if (!passwordEncoder.matches(loginDTO.getPassword(), userEntity.getPassword())) {
             throw new BaseException("wrong password");
         }
@@ -96,4 +108,22 @@ public class UserServiceImp implements UserService {
         return new JwtResponse(jwtService.generateAccessToken(userEntity),
                 jwtService.generateRefreshToken(userEntity));
     }
+
+    public String generateCode() {
+        Random random = new Random();
+        int randomCode = 1000 + random.nextInt(9000); // 1000–9999 oralig'ida tasodifiy raqam
+        return String.valueOf(randomCode);
+    }
+
+
+    public String verifyEmail(String username, String code) {
+        UserEntity userEntity = userRepository.findByUsername(username).orElseThrow(() -> new BaseException("user not found"));
+        if(userEntity.getGmailCode().equals(code)) {
+            userEntity.setIsActive(true);
+            userRepository.save(userEntity);
+            return "Successfully verified";
+        }
+        throw new BaseException("Invalid email");
+    }
+
 }
