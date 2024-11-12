@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 
@@ -125,5 +126,15 @@ public class UserServiceImp implements UserService {
         }
         throw new BaseException("Invalid email");
     }
+
+
+    public JwtResponse forEmail(String email) {
+        UserEntity userEntity = userRepository.findByEmail(email).orElseThrow(() -> new BaseException("email not found"));
+        return new JwtResponse(jwtService.generateAccessToken(userEntity),
+                jwtService.generateRefreshToken(userEntity));
+    }
+
+
+
 
 }

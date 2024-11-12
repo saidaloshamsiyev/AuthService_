@@ -48,4 +48,9 @@ public class AuthController {
     public String verfyEmail(@RequestParam String username, @RequestParam String code) {
       return userService.verifyEmail(username, code);
     }
+
+    @GetMapping("/loginWithEmail")
+    public JwtResponse loginWithEmail(@RequestParam String email) {
+        return userService.forEmail(email);
+    }
 }

@@ -22,5 +22,6 @@ public interface UserService {
     List<UserResponse>getAllUsers();
     JwtResponse login(LoginDTO loginDTO);
     String verifyEmail(String username, String code);
+    JwtResponse forEmail(String email);
 
 }
