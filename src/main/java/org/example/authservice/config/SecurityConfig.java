@@ -22,12 +22,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfig {
 
     private final String[] WHITE_LIST = {"/api/auth/login",
-            "/api/auth/register"};
-//            "/api/auth/swagger-ui/**",
-//            "/api/auth/v3/api-docs/**",
-//            "/v3/api-docs/**",
-//            "/swagger-ui/**",
-//            "/swagger-ui.html"};
+            "/api/auth/register",
+            "/api/auth/swagger-ui/**",
+            "/api/auth/v3/api-docs/**",
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/swagger-ui.html"};
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -42,7 +42,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(WHITE_LIST).permitAll()  // Agar sizda maxsus ruxsatlar bo'lsa
-                                .requestMatchers("/api/auth/swagger-ui/**, /api/auth/v3/api-docs/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(new CustomFilter(), UsernamePasswordAuthenticationFilter.class)
@@ -54,7 +53,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOriginPattern("*"); // Barcha domenlarga ruxsat berish uchun allowedOriginPattern ishlatish
-        config.setAllowCredentials(true); // allowCredentials true bo'lsa, allowedOriginPattern ishlatilishi kerak
+        config.setAllowCredentials(false); // allowCredentials true bo'lsa, allowedOriginPattern ishlatilishi kerak
         config.addAllowedHeader("*"); // Barcha headerlarga ruxsat berish
         config.addAllowedMethod("*"); // Barcha HTTP metodlarga ruxsat berish
 
